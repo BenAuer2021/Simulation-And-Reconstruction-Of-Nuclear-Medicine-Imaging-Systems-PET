@@ -93,15 +93,31 @@ The simulation output can be controlled via the following command lines to creat
 <img width="430" alt="Screen Shot 2023-09-25 at 11 55 43 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/3d2112e0-edd1-47cf-8ce5-b0940e973df5">
 
 # 4. How to Run the Simulation
+The acquisition time and the random generator can be controlled from the main macro (main.mac).
 
-<img width="471" alt="Screen Shot 2023-09-25 at 11 56 34 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/f5c761fe-446f-4cab-a826-3e4a76d14bc6">
+<img width="277" alt="Screen Shot 2023-09-25 at 12 48 41 PM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/208be92c-c281-4549-a25c-e1beb28760cd">
 
+It is recomended to run the simulation with a low statistics to verify that it complete without issues and crashes.
+
+https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/4af005e5-6fbe-443f-b461-32c3a72ebe86
+
+The simulation can then be run with the desired statistics,
+
+https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/873993e6-85db-4f33-b306-646de946fd37
 
 # 5. How to Analyze the Simulaton Data
+We provide a python script to analyze the simulation data `runAnalysis.py`.
+
+Run the analysis with,
+```ruby
+python ./runAnalysis.py output
+```
+The output of this script for a 10,000 Bq simulation looks like below,
+<img width="853" alt="Screen Shot 2023-09-25 at 1 01 21 PM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/d8cd2c73-d110-4362-aa57-7323c213f7d5">
 
 
 # 6. How to Reconstruct the Simulaton Data
-
+The GATE simulated data can be reconstructed via the CASToR software that allows for histogram and list-mode PET reconstruction with Time-Of-Flight modeling. CASToR provides tools to transform GATE macro and data to CASToR format files used in reconstruction. Details on CASToR and benchmarks can be found [here](https://castor-project.org/documentation_v3).
 
 
 
