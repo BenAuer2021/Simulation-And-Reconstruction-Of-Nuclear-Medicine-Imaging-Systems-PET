@@ -1,0 +1,59 @@
+##########################################################
+# Verbosity
+##########################################################
+/control/execute mac/verbose.mac
+
+##########################################################
+# Material Database
+##########################################################
+/gate/geometry/setMaterialDatabase data/GateMaterials.db
+
+##########################################################
+# Geometry
+##########################################################
+/control/execute mac/world.mac
+/control/execute mac/pet_head.mac
+/control/execute mac/pet_digitizer.mac
+/control/execute mac/cylindrical_phantom.mac
+
+##########################################################
+# Physics
+##########################################################
+/control/execute mac/physics.mac
+
+##########################################################
+# Output
+##########################################################
+/control/execute mac/output.mac
+
+##########################################################
+# Initialisation
+##########################################################
+/gate/run/initialize
+
+##########################################################
+# Visualisation
+##########################################################
+#/control/execute mac/visu.mac
+
+##########################################################
+# Source
+##########################################################
+/control/execute mac/sources.mac
+
+# Random
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+# verbose
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# Start acquisition
+/gate/application/setTimeStart 0 s
+/gate/application/setTimeSlice 60 s
+/gate/application/setTimeStop  120 s
+
+/gate/application/startDAQ
+
