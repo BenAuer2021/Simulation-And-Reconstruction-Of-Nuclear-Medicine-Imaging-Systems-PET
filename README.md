@@ -1,25 +1,35 @@
 # Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET
 
-The simulation and reconstruction in PET imaging are developed and maintained by Auer Benjamin from the Brigham and Women's Hospital and Harvard Medical School, Boston, MA, USA, and Roncali Emilie from the University of California, Davis, CA, USA.
+The simulation and reconstruction for PET imaging are developed and maintained by Auer Benjamin from the Brigham and Women's Hospital and Harvard Medical School, Boston, MA, USA, and Roncali Emilie from the University of California, Davis, CA, USA.
 
 **Contact:** Auer, Benjamin Ph.D <bauer@bwh.harvard.edu>
 
 Table of contents:
 ```diff
 - 1. Objective
-- 2. Defrise Phantom
-  - 2.1 Description
-  - 2.2 Usage in GATE
-- 3. Derenzo Phantom
-  - 3.1 Description
-  - 3.2 Usage in GATE  
+- 2. Folder structure
+- 2. Structure of the simulation
+  - a) main.mac
+  - b) mac/Verbose.mac
+  - c) mac/world.mac
+  - d) Data/GateMaterials.db
+  - e) System and detector geometry: PET_head
+  - f) Visualizing the geometry
+  - g) Defining the attenuation object/patient
+  - h) Setting up the source object
+  - i) Setting up the physics
+  - j) Setting up the acquisition parameters: Digitizer
+  - k) Format the output data
+- 4. How to run the simulation
+- 5. How to analyze the simulation data
+- 6. How to reconstruct the simulation data
 ```
 
 # 1. Objective
-In this tutorial, we offer a step-by-step walk through on how to build a realistic PET simulation in [GATE source page](http://www.opengatecollaboration.org).  
+In this tutorial, we offer a step-by-step walk through on how to build and analyze a realistic PET simulation in [GATE source page](http://www.opengatecollaboration.org).  
 
 # 2. Folder Structure
-The folder structure where the find the phantom data and GATE macro files can be seen below,
+The folder structure where to find the phantom data and GATE macro files can be seen below,
 
 <p align="center">
 <img width="954" alt="Screen Shot 2023-09-25 at 9 58 25 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/47685035-63b3-4be9-829e-0456d44af2a5">
@@ -59,7 +69,7 @@ The `GateMaterials.db` contains all the material definition used in the simulati
 </p>
 
 ## e) System and Detector Geometry: PET_head
-We defined the cylindrical geometry (size, position, and material) and the components of the the PET_head following a volume hierarchy (Head, Module, Block, Crystal, and Layer).
+We defined the cylindrical geometry (size, position, and material) and the components of the the `PET_head` following a volume hierarchy (Head, Module, Block, Crystal, and Layer).
 
 <p align="center">
 <img width="596" alt="Screen Shot 2023-09-25 at 10 54 07 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/7cf219da-7a56-4ff3-8f42-768d6141b2f5">
@@ -88,7 +98,10 @@ The last step is to define which volumes are sensitive to interactions. The simu
 </p>
 
 ## f) Visualizing the Geometry
-https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/2054ebb3-c7c5-4df3-a70e-d19855110869
+
+<p align="center">
+https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/3da38cc7-16e9-44e2-8fed-aca31684c4ba
+</p>
 
 ## g) Defining the attenuation object/patient
 The benchmark is a simple example of a water cylinder, but antropomorphic phantoms or CT-based phantoms can be created from patient data. Any of the phantoms available [here](https://github.com/BenAuer2021/Phantoms-For-Nuclear-Medicine-Imaging-Simulation#readme) can be used. The attenuation phantom can also be defined as a series of STL-based objects, we provide several STL-based phantoms [here](https://github.com/BenAuer2021/Mesh-based-Human-Phantom-for-Simulation/edit/main/README.md)
@@ -102,14 +115,14 @@ We use in the benchmark a F-18 source analytically defined. The source can also 
 
 ## i) Setting up the physics
 
-The physics model and range and energy cuts for different particles and medium need to be set. 
+The physics model plus range and energy cuts for different particles and medium need to be set. 
 
 <p align="center">
 <img width="595" alt="Screen Shot 2023-09-25 at 11 28 47 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/628a12aa-9065-464b-b883-e9c39ebf1784">
 </p>
 
 ## j) Setting up the acquisition parameters: Digitizer
-The digitizer is the critical module in modeling the detection mechanism. It can include modeling of the electronics and create waveforms, energy resolution, and deadtime. 
+The digitizer is the critical module in modeling the detection mechanism. It can include modeling of the electronics and create waveforms, energy resolution, and dead-time. 
 
 <p align="center">
 <img width="672" alt="Screen Shot 2023-09-25 at 11 48 40 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/b1fefe05-c090-40c2-a60a-59bcadfa9b62">
@@ -122,22 +135,24 @@ The simulation output can be controlled via the following command lines to creat
 <img width="430" alt="Screen Shot 2023-09-25 at 11 55 43 AM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/3d2112e0-edd1-47cf-8ce5-b0940e973df5">
 </p>
 
-# 4. How to Run the Simulation
+# 4. How to run the simulation
 The acquisition time and the random generator can be controlled from the main macro (main.mac).
 
 <p align="center">
 <img width="277" alt="Screen Shot 2023-09-25 at 12 48 41 PM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/208be92c-c281-4549-a25c-e1beb28760cd">
 </p>
 
-It is recomended to run the simulation with a low statistics to verify that it complete without issues and crashes.
-
+It is recomended to run the simulation with a low statistics to verify that it completes without issues and crashes.
+<p align="center">
 https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/4af005e5-6fbe-443f-b461-32c3a72ebe86
+</p>
 
 The simulation can then be run with the desired statistics,
-
+<p align="center">
 https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/873993e6-85db-4f33-b306-646de946fd37
+</p>
 
-# 5. How to Analyze the Simulaton Data
+# 5. How to analyze the simulation data
 We provide a python script to analyze the simulation data `runAnalysis.py`.
 
 Run the analysis with,
@@ -150,7 +165,7 @@ The output of this script for a 10,000 Bq simulation looks like below,
 <img width="853" alt="Screen Shot 2023-09-25 at 1 01 21 PM" src="https://github.com/BenAuer2021/Simulation-And-Reconstruction-Of-Nuclear-Medicine-Imaging-Systems-PET/assets/84809217/d8cd2c73-d110-4362-aa57-7323c213f7d5">
 </p>
 
-# 6. How to Reconstruct the Simulaton Data
+# 6. How to Reconstruct the simulation data
 The GATE simulated data can be reconstructed via the CASToR software that allows for histogram and list-mode PET reconstruction with Time-Of-Flight modeling. CASToR provides tools to transform GATE macro and data to CASToR format files used in reconstruction. Details on CASToR and benchmarks can be found [here](https://castor-project.org/documentation_v3).
 
 
